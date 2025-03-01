@@ -36,7 +36,8 @@ export const PeopleTable: React.FC<Props> = ({ people }) => {
                 key={person.slug}
                 person={person}
                 isSelected={selectedPersonSlug === person.slug}
-                onSelect={() => setSelectedPersonSlug(person.slug)}
+                onSelect={setSelectedPersonSlug}
+                people={people}
               />
             ))}
           </tbody>
