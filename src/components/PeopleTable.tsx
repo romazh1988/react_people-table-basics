@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Person } from '../types';
 import { PersonRow } from './PersonRow';
+import { useParams } from 'react-router-dom';
 
 interface Props {
   people: Person[];
 }
 
 export const PeopleTable: React.FC<Props> = ({ people }) => {
-  const [selectedPersonSlug, setSelectedPersonSlug] = useState<string | null>(
-    null,
-  );
+  const { slug } = useParams<{ slug: string }>();
 
   return (
     <div className="table-container">
@@ -35,8 +34,7 @@ export const PeopleTable: React.FC<Props> = ({ people }) => {
               <PersonRow
                 key={person.slug}
                 person={person}
-                isSelected={selectedPersonSlug === person.slug}
-                onSelect={setSelectedPersonSlug}
+                isSelected={slug === person.slug}
                 people={people}
               />
             ))}

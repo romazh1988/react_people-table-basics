@@ -1,8 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-export const Navbar = () => {
-  const location = useLocation();
-
+export const Navbar: React.FC = () => {
   return (
     <nav
       className="navbar is-fixed-top has-shadow"
@@ -11,18 +10,22 @@ export const Navbar = () => {
     >
       <div className="container">
         <div className="navbar-brand">
-          <Link
-            className={`navbar-item ${location.pathname === '/' ? 'has-background-grey-lighter' : ''}`}
+          <NavLink
             to="/"
+            className={({ isActive }) =>
+              `navbar-item ${isActive ? 'has-background-grey-lighter' : ''}`
+            }
           >
             Home
-          </Link>
-          <Link
-            className={`navbar-item ${location.pathname === '/people' ? 'has-background-grey-lighter' : ''}`}
+          </NavLink>
+          <NavLink
             to="/people"
+            className={({ isActive }) =>
+              `navbar-item ${isActive ? 'has-background-grey-lighter' : ''}`
+            }
           >
             People
-          </Link>
+          </NavLink>
         </div>
       </div>
     </nav>
